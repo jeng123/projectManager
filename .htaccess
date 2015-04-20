@@ -1,0 +1,5 @@
+RewriteEngine on
+
+RewriteRule ^(css|js|images)(/|$) - [L,NC]
+
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
