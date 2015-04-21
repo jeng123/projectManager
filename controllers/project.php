@@ -8,9 +8,6 @@ if(isset($q[1])) {
  if(isset($_POST['newTask'])) {
   Tasks::addTask($_POST['newTask'],$q[1]);
  }
- if(isset($_GET['deleteTask'])) {
-  Tasks::deleteTask($_GET['deleteTask'],$q[1],$_SESSION['user']);
- }
 
  $project=Projects::getProject($q[1]);
  if($project==false) {unset($project);}

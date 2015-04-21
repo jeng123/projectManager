@@ -9,6 +9,9 @@ if(isset($q[1])) {
   include('classes/Projects.php');
   Tasks::editTask($_POST['editTask'],$q[1]);
  }
+ if(isset($_GET['deleteTask'])) {
+  Tasks::deleteTask($_GET['deleteTask']);
+ }
 
  $task=Tasks::getTask($q[1]);
 }

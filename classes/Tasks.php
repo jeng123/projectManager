@@ -27,6 +27,18 @@ class Tasks {
   return($documents);  
  }
 
+ function deleteTask($taskId) {
+  $task=Database::$cpsSimple->retrieveSingle($taskId);
+  Database::$cpsSimple->delete($taskId);
+  $pointsDone=intVal($task->points)*intVal($task->progress)/100;
+  $points=intVal($task->points);
+  $project=Projects::getProject((string)$task->projectId);
+  $projectUpdate['pointsDone']=intVal($project[0]->pointsDone)-$pointsDone;
+  $projectUpdate['points']=intVal($project[0]->points)-$points;
+  $projectUpdate['id']=(string)$task->projectId;
+  Projects::editProject($projectUpdate);
+ }
+ 
  function getTask($taskId) {
   $document = Database::$cpsSimple->retrieveSingle($taskId);
   return($document);  
@@ -52,20 +64,5 @@ class Tasks {
  function updateTaskStatus($taskId,$newStatus) {
  }
  
- function deleteTask($taskId,$projectId,$userId) {
-  $project=Projects::getProject($projectId);
-  try {
-   $task = Database::$cpsSimple->retrieveSingle($taskId);
-  } catch (CPS_Exception $e) {
-   $task=false;
-  }
-  if($project!=false && $task!=false && ($project[0]->owner==$_SESSION['user'] || $task->owner=$userId)) {
-   Database::$cpsSimple->delete($taskId);
-   $projectUpdate['points']=$project[0]->points-$task->points;
-   $projectUpdate['id']=$projectId;
-   Projects::editProject($projectUpdate);
-  }
- }
-
 }
 ?>

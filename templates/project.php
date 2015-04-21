@@ -11,7 +11,7 @@ if(isset($project)) {
  <h2>Tasks on project: <span style='color:#033E76'><?=$project[0]->name?></span> <button onclick="openClose('projectDesc')" style='font-size:14px; float:right'>Show project info</button></h2>
  <div id='projectDesc' style='display:none;'>
   <?=str_replace("\n",'<br>',$project[0]->description)?><br><br>
-  <a href='/dashboard?deleteProject=<?=$project[0]->id?>'>DELETE this project</a>
+  <a href='/dashboard?deleteProject=<?=$project[0]->id?>'><button>DELETE this project</button></a>
  </div>
 </div>
 <hr>

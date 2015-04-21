@@ -130,7 +130,7 @@ function openClose(id) {
  <center>
   <div id='header'>
    <div class='container'>
-	<div style='float:left'>v1.0</div>
+	<div style='float:left'><a href='/about'>ABOUT</a> | v1.0</div>
 <?php if(isset($_SESSION['user'])) { ?>
 	<a href='/dashboard'>My Projects</a> | 
 	<a href='/?logout'>LOGOUT</a>
